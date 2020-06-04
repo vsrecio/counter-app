@@ -1,10 +1,20 @@
 import time
 import redis
+import socket
 from flask import Flask
 
 app = Flask(__name__)
 cache = redis.Redis(host='redis', port=6379)
 
+host_name = socket.gethostname() 
+host_ip = socket.gethostbyname(host_name) 
+
+@app.route("/hola")
+def index():
+    host = socket.gethostbyname(host_name) 
+    return "Hola desde la instancia {} \n".format(host)
+
+#counts 
 def get_hit_count():
     retries = 5
     while True:
@@ -19,7 +29,7 @@ def get_hit_count():
 @app.route('/')
 def hello():
     count = get_hit_count()
-    return "What's up Docker Deep Divers! You've visited me {} times.\n".format(count)
+    return "Esta pagina ha sido visitada {} veces, deja de darle a F5  por favor! :).\n".format(count)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
