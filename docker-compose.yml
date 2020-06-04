@@ -12,7 +12,7 @@ services:
       - type: volume
         source: counter-vol
         target: /code
-    deploy:
+    # deploy:
     # replicas: 2
     # failure_action: rollback
     # placement:
