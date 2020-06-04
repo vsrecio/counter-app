@@ -13,11 +13,11 @@ services:
         source: counter-vol
         target: /code
     deploy:
-    replicas: 2
-    failure_action: rollback
-    placement:
-        constraints:
-         - 'node.role == manager'
+    # replicas: 2
+    # failure_action: rollback
+    # placement:
+    #     constraints:
+    #      - 'node.role == manager'
     
   redis:
     image: "redis:alpine"
